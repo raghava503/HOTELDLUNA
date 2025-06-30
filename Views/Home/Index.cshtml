@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var username = Session["Username"] as string;
+}
+
+<h2>Index</h2>
+
+@if (!string.IsNullOrEmpty(username))
+{
+  
+    <div class="card my-4 shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title">Welcome to Hotel Luna</h3>
+            <p class="card-text">
+                Nestled in the heart of the city, Hotel Luna offers a perfect blend of comfort, elegance, and modern convenience. Our hotel features beautifully appointed rooms and suites designed to provide a relaxing retreat for both business and leisure travelers. Guests can enjoy a range of amenities including complimentary high-speed Wi-Fi, a state-of-the-art fitness center, and a gourmet restaurant serving local and international cuisine.
+            </p>
+            <p class="card-text">
+                At Hotel Luna, exceptional service is our hallmark. Our dedicated staff is available around the clock to ensure your stay is seamless and memorable. Whether you are visiting for a weekend getaway, a family vacation, or a business trip, Hotel Luna promises an unforgettable experience marked by luxury, hospitality, and attention to detail.
+            </p>
+        </div>
+    </div>
+
+
+    @Html.ActionLink("click here to book a room", "Register")
+}
+else
+{
+    <h3>Welcome, Guest!</h3>
+}

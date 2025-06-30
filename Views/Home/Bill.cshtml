@@ -1,0 +1,18 @@
+﻿@model WebApplication7.Models.Booking
+
+@{
+    ViewBag.Title = "Booking Confirmation";
+}
+
+<h2>Booking Confirmation</h2>
+<div class="alert alert-success">
+    <strong>Booking Successful!</strong>
+</div>
+<table class="table">
+    <tr><th>Booking ID</th><td>@Model.BookingId</td></tr>
+    <tr><th>Room Type</th><td>@Model.RoomType</td></tr>
+    <tr><th>Check In</th><td>@Model.CheckIn.ToShortDateString()</td></tr>
+    <tr><th>Check Out</th><td>@Model.CheckOut.ToShortDateString()</td></tr>
+    <tr><th>Bill</th><td>@Model.Bill.ToString("C")</td></tr>
+</table>
+<a href="@Url.Action("CustomerDashboard", "Home")" class="btn btn-primary">My Bookings</a>

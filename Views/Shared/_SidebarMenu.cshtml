@@ -1,0 +1,42 @@
+﻿
+<ul class="nav flex-column">
+    <li class="nav-item mb-2">
+        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+    </li>
+    <li class="nav-item mb-2">
+        @Html.ActionLink("Register", "Register", "Home", null, new { @class = "nav-link" })
+    </li>
+    <li class="nav-item mb-2">
+        @Html.ActionLink("New User", "NewUser", "Home", null, new { @class = "nav-link" })
+    </li>
+    <li class="nav-item mb-2">
+        @Html.ActionLink("User List", "UserList", "Home", null, new { @class = "nav-link" })
+    </li>
+    @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+    {
+        <li class="nav-item mb-2">
+            @Html.ActionLink("Admin Dashboard", "AdminDashboard", "Home", null, new { @class = "nav-link" })
+        </li>
+        <li class="nav-item mb-2">
+            @Html.ActionLink("Manage Rooms", "Index", "Rooms", null, new { @class = "nav-link" })
+        </li>
+    }
+    @if (Session["Role"] != null && Session["Role"].ToString() == "Customer")
+    {
+        <li class="nav-item mb-2">
+            @Html.ActionLink("My Bookings", "CustomerDashboard", "Home", null, new { @class = "nav-link" })
+        </li>
+    }
+    @if (Session["Username"] != null)
+    {
+        <li class="nav-item mb-2">
+            @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "nav-link text-danger" })
+        </li>
+    }
+    else
+    {
+        <li class="nav-item mb-2">
+            @Html.ActionLink("Login", "Login", "Home", null, new { @class = "nav-link" })
+        </li>
+    }
+</ul>

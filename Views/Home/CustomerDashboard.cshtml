@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication7.Models.Booking>
+<div class="container mt-4">
+    <h2 class="mb-4">My Bookings</h2>
+    <div class="mb-3">
+        <span class="badge bg-info">Total Bookings: @Model.Count()</span>
+        <a href="@Url.Action("Register", "Home")" class="btn btn-primary btn-sm float-end">Book a Room</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-primary">
+                <tr>
+                    <th>Room Type</th>
+                    <th>Check-In</th>
+                    <th>Check-Out</th>
+                    <th>Bill</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var booking in Model)
+                {
+                    <tr>
+                        <td>@booking.RoomType</td>
+                        <td>@booking.CheckIn.ToShortDateString()</td>
+                        <td>@booking.CheckOut.ToShortDateString()</td>
+                        <td>@booking.Bill.ToString("C")</td>
+                        <td>
+                            <span class="badge bg-success">Upcoming</span>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Bill", "Home", new { id = booking.BookingId })" class="btn btn-outline-info btn-sm">View Bill</a>
+                            <a href="@Url.Action("Cancel", "Home", new { id = booking.BookingId })" class="btn btn-outline-danger btn-sm">Cancel</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

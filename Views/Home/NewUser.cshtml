@@ -1,0 +1,102 @@
+﻿@model WebApplication7.Models.User
+
+@{
+    ViewBag.Title = "Register New User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var countries = new List<SelectListItem>
+{
+        new SelectListItem { Text = "Select Country", Value = "" },
+        new SelectListItem { Text = "India", Value = "India" },
+        new SelectListItem { Text = "USA", Value = "USA" },
+        new SelectListItem { Text = "UK", Value = "UK" },
+        new SelectListItem { Text = "Canada", Value = "Canada" }
+        // Add more countries as needed
+    };
+    var languages = new[] { "English", "Hindi", "French", "Spanish" }; // Add more as needed
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Register New User</h4>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Enter first name" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Enter last name" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Choose a username" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label d-block">Gender</label>
+                            <div class="form-check form-check-inline">
+                                @Html.RadioButtonFor(m => m.Gender, "Male", new { @class = "form-check-input", id = "genderMale" })
+                                <label class="form-check-label" for="genderMale">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                @Html.RadioButtonFor(m => m.Gender, "Female", new { @class = "form-check-input", id = "genderFemale" })
+                                <label class="form-check-label" for="genderFemale">Female</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                @Html.RadioButtonFor(m => m.Gender, "Other", new { @class = "form-check-input", id = "genderOther" })
+                                <label class="form-check-label" for="genderOther">Other</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" name="ConfirmPassword" class="form-control" placeholder="Re-enter password" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter email", type = "email" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone</label>
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Enter phone number" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Enter address" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Age</label>
+                            @Html.TextBoxFor(m => m.Age, new { @class = "form-control", placeholder = "Enter age", type = "number", min = "1" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label d-block">Languages</label>
+                            @foreach (var lang in languages)
+                            {
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="LanguagesKnown" value="@lang" id="lang_@lang" />
+                                    <label class="form-check-label" for="lang_@lang">@lang</label>
+                                </div>
+                            }
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Country</label>
+                            @Html.DropDownListFor(m => m.Country, countries, new { @class = "form-select" })
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

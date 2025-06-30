@@ -1,0 +1,28 @@
+﻿@model IEnumerable<WebApplication7.Models.Room>
+@{
+    ViewBag.Title = "Manage Rooms";
+}
+<h2>Manage Rooms</h2>
+<p>
+    @Html.ActionLink("Add Room", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Room Type</th>
+        <th>Available</th>
+        <th>Price Per Night</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.RoomType</td>
+            <td>@(item.IsAvailable ? "Yes" : "No")</td>
+            <td>@item.PricePerNight.ToString("C")</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.RoomId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.RoomId })
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,31 @@
+﻿@model WebApplication7.Models.Booking
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">Register</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label class="form-label">Room Type</label>
+        @Html.DropDownListFor(m => m.RoomType, new SelectList(new[] {
+            new { Value = "Delux", Text = "Delux" },
+            new { Value = "Ordinary", Text = "Ordinary" }
+        }, "Value", "Text"), "Select Room Type", new { @class = "form-select" })
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Check In</label>
+        @Html.TextBoxFor(m => m.CheckIn, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Check Out</label>
+        @Html.TextBoxFor(m => m.CheckOut, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary w-100">Generate Bill</button>
+    </div>
+}

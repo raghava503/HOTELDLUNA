@@ -1,0 +1,13 @@
+﻿
+@model WebApplication7.Controllers.AdminDashboardViewModel
+
+@{
+    ViewBag.Title = "Admin Dashboard";
+}
+
+<h2>Admin Dashboard</h2>
+<ul class="list-group">
+    <li class="list-group-item">Total Bookings: <strong>@Model.TotalBookings</strong></li>
+    <li class="list-group-item">Occupied Rooms: <strong>@Model.OccupiedRooms</strong></li>
+    <li class="list-group-item">Total Revenue: <strong>@Model.TotalRevenue.ToString("C")</strong></li>
+</ul>
