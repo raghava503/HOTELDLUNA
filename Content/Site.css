@@ -1,22 +1,178 @@
-﻿
-.main-content, .container {
-    background: rgba(255,255,255,0.95);
+﻿body {
+    background-image: url('/Content/Images/pexels-asman-chema-91897-594077.jpg');
+    background-size: cover;
+    min-height: 100vh;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main content area as a card */
+.main-content {
+    background: #fff;
     min-height: 90vh;
-    padding: 2rem 1.5rem 1rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    margin-top: 1rem;
+    padding: 2.5rem 2rem 2rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 32px rgba(0,0,0,0.07);
+    margin-top: 0;
     position: relative;
     z-index: 1;
 }
 
+/* Headings */
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    color: #1e293b;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn, input[type="submit"], button {
+    border-radius: 8px !important;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+}
+
+    .btn-primary, input[type="submit"].btn-primary, button.btn-primary {
+        background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+        border: none;
+        color: #fff;
+    }
+
+        .btn-primary:hover, input[type="submit"].btn-primary:hover, button.btn-primary:hover {
+            background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(37,99,235,0.15);
+        }
+
+/* Forms */
+.form-control, .form-select {
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    box-shadow: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-size: 1rem;
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 2px #2563eb22;
+    }
+
+label, .form-label {
+    font-weight: 500;
+    color: #334155;
+    margin-bottom: 0.3rem;
+}
+
+/* Tables */
+.table {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+    .table th {
+        background: #2563eb;
+        color: #fff;
+        font-weight: 700;
+        border: none;
+        letter-spacing: 0.5px;
+    }
+
+    .table td, .table th {
+        vertical-align: middle !important;
+        border-top: 1px solid #e5e7eb;
+        padding: 0.75rem 1rem;
+    }
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f1f5f9;
+}
+
+/* Alerts and validation */
+.alert, .text-danger, .validation-summary-errors {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Footer */
 footer {
     background: transparent;
+    color: #1e293b;
+    font-size: 0.98rem;
+    margin-top: 2rem;
+}
+
+/* Navbar */
+.navbar {
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+    background: #2563eb !important;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #1e293b !important;
+    transition: color 0.2s, background 0.2s;
+    border-radius: 6px;
+    margin-right: 0.5rem;
+}
+
+    .nav-link.active, .nav-link:hover {
+        background: #2563eb;
+        color: #fff !important;
+    }
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .main-content {
+        padding: 1.2rem 0.7rem;
+        margin-top: 0;
+    }
+
+    h1, h2 {
+        font-size: 1.4rem;
+    }
+}
+/* Crop carousel images to 16:9 aspect ratio */
+.carousel-img-crop {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0.5rem;
+}
+
+/* Crop card images to 4:3 aspect ratio */
+.card-img-crop {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0.5rem 0.5rem 0 0;
 }
 
 @media (max-width: 767.98px) {
-    .main-content, .container {
-        padding: 1rem 0.5rem;
-        margin-top: 0.5rem;
+    .main-content {
+        padding: 0.7rem 0.2rem;
+        margin-top: 0;
+    }
+
+    h1, h2 {
+        font-size: 1.1rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.1rem;
     }
 }
