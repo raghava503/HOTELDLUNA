@@ -174,7 +174,7 @@ namespace WebApplication7.Controllers
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
-                return RedirectToAction("UserList");
+                return RedirectToAction("Login");
             }
             return View(model);
         }
@@ -217,26 +217,38 @@ namespace WebApplication7.Controllers
             if (Session["Role"]?.ToString() != "Admin")
                 return RedirectToAction("Login", "Home");
 
-            // Example: Query total bookings, occupancy, revenue
             var dashboard = new AdminDashboardViewModel();
-
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
 
-                // Total bookings
                 using (var cmd = new SqlCommand("SELECT COUNT(*) FROM Bookings", conn))
                     dashboard.TotalBookings = (int)cmd.ExecuteScalar();
 
-                // Occupied rooms
                 using (var cmd = new SqlCommand("SELECT COUNT(*) FROM Rooms WHERE IsAvailable = 0", conn))
                     dashboard.OccupiedRooms = (int)cmd.ExecuteScalar();
 
-                // Revenue
                 using (var cmd = new SqlCommand("SELECT ISNULL(SUM(Bill),0) FROM Bookings", conn))
                     dashboard.TotalRevenue = (decimal)cmd.ExecuteScalar();
 
+                // Fetch all bookings with customer info
+                dashboard.Bookings = new List<Booking>();
+                using (var cmd = new SqlCommand("SELECT BookingId, Username, CheckIn, CheckOut, Bill FROM Bookings", conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        dashboard.Bookings.Add(new Booking
+                        {
+                            BookingId = reader["BookingId"] != DBNull.Value ? (Guid)reader["BookingId"] : Guid.Empty,
+                            Username = reader["Username"].ToString(),
+                            CheckIn = reader["CheckIn"] != DBNull.Value ? (DateTime)reader["CheckIn"] : DateTime.MinValue,
+                            CheckOut = reader["CheckOut"] != DBNull.Value ? (DateTime)reader["CheckOut"] : DateTime.MinValue,
+                            Bill = reader["Bill"] != DBNull.Value ? (decimal)reader["Bill"] : 0m
+                        });
+                    }
+                }
                 conn.Close();
             }
 
@@ -285,5 +297,7 @@ namespace WebApplication7.Controllers
         public int TotalBookings { get; set; }
         public int OccupiedRooms { get; set; }
         public decimal TotalRevenue { get; set; }
+        public List<Booking> Bookings { get; set; } // Add this line
+
     }
 }

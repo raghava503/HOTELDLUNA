@@ -88,6 +88,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\HD-wallpaper-beautiful-beach-view-villa-resort-lodge-bedroom-villa-sea-bed-beach-lagoon-room-luxury-wood-hotel-exotic-view-holiday-ocean-peace-suite-paradise-sanctuary-spa-tropical.jpg" />
+    <Content Include="Content\Images\pexels-asman-chema-91897-594077.jpg" />
+    <Content Include="Content\Images\_uhdbirdseyeview134.jpg" />
+    <Content Include="Content\Images\_uhdbirdseyeview153.jpg" />
+    <Content Include="Content\Images\_uhdfoodsndrinks147.jpg" />
     <Content Include="Content\Images\_uhdreflections105.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />

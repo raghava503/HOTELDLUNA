@@ -10,9 +10,8 @@
         new SelectListItem { Text = "USA", Value = "USA" },
         new SelectListItem { Text = "UK", Value = "UK" },
         new SelectListItem { Text = "Canada", Value = "Canada" }
-        // Add more countries as needed
     };
-    var languages = new[] { "English", "Hindi", "French", "Spanish" }; // Add more as needed
+    var languages = new[] { "English", "Hindi", "French", "Spanish" };
 }
 
 <div class="container mt-5">
@@ -26,17 +25,22 @@
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
                         <div class="mb-3">
                             <label class="form-label">First Name</label>
                             @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Enter first name" })
+                            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Last Name</label>
                             @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Enter last name" })
+                            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Username</label>
                             @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Choose a username" })
+                            @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
                         </div>
                         <div class="mb-3">
                             <label class="form-label d-block">Gender</label>
@@ -52,30 +56,40 @@
                                 @Html.RadioButtonFor(m => m.Gender, "Other", new { @class = "form-check-input", id = "genderOther" })
                                 <label class="form-check-label" for="genderOther">Other</label>
                             </div>
+                            @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Password</label>
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Confirm Password</label>
                             <input type="password" name="ConfirmPassword" class="form-control" placeholder="Re-enter password" />
+                            @if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any(e => e.ErrorMessage.Contains("Passwords do not match")))
+                            {
+                                <span class="text-danger">Passwords do not match.</span>
+                            }
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Email</label>
                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter email", type = "email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Phone</label>
                             @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Enter phone number" })
+                            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Address</label>
                             @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Enter address" })
+                            @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Age</label>
                             @Html.TextBoxFor(m => m.Age, new { @class = "form-control", placeholder = "Enter age", type = "number", min = "1" })
+                            @Html.ValidationMessageFor(m => m.Age, "", new { @class = "text-danger" })
                         </div>
                         <div class="mb-3">
                             <label class="form-label d-block">Languages</label>
@@ -90,6 +104,7 @@
                         <div class="mb-3">
                             <label class="form-label">Country</label>
                             @Html.DropDownListFor(m => m.Country, countries, new { @class = "form-select" })
+                            @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-lg">Register</button>

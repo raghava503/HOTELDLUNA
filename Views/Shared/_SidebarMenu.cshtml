@@ -9,9 +9,7 @@
     <li class="nav-item mb-2">
         @Html.ActionLink("New User", "NewUser", "Home", null, new { @class = "nav-link" })
     </li>
-    <li class="nav-item mb-2">
-        @Html.ActionLink("User List", "UserList", "Home", null, new { @class = "nav-link" })
-    </li>
+
     @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
     {
         <li class="nav-item mb-2">
@@ -19,6 +17,9 @@
         </li>
         <li class="nav-item mb-2">
             @Html.ActionLink("Manage Rooms", "Index", "Rooms", null, new { @class = "nav-link" })
+        </li>
+        <li class="nav-item mb-2">
+            @Html.ActionLink("User List", "UserList", "Home", null, new { @class = "nav-link" })
         </li>
     }
     @if (Session["Role"] != null && Session["Role"].ToString() == "Customer")

@@ -1,30 +1,79 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Welcome to Hotel Dluna";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var username = Session["Username"] as string;
 }
 
-<h2>Index</h2>
+<div class="row mb-4">
+    <div class="col-lg-7">
+        <h1 class="mb-34">Welcome to Hotel Dluna</h1>
+        <p class="lead">
+            Hotel Dluna is a beautiful hotel and resort located near a pristine beach, offering breathtaking views and a tranquil atmosphere. Our guests enjoy the perfect blend of luxury, comfort, and nature, making every stay a memorable experience.
+        </p>
+        <p>
+            Renowned for our exceptional hospitality, Hotel Dluna provides world-class service, elegant rooms, and a variety of amenities to ensure your utmost satisfaction. Indulge in delicious cuisine at our gourmet restaurant, relax by the beach, or explore the vibrant local culture. Whether you are here for a romantic getaway, a family vacation, or a business retreat, Hotel Dluna is your ideal destination for relaxation and adventure.
+        </p>
+        @if (!string.IsNullOrEmpty(username))
+        {
+            <a href="@Url.Action("Register", "Home")" class="btn btn-primary btn-lg mt-3">Book a Room</a>
+        }
+        else
+        {
+            <a href="@Url.Action("Login", "Home")" class="btn btn-outline-primary btn-lg mt-3">Login to Book</a>
+        }
+    </div>
+    <div class="col-lg-5">
+        <div id="hotelCarousel" class="carousel slide shadow rounded" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="@Url.Content("~/Content/Images/HD-wallpaper-beautiful-beach-view-villa-resort-lodge-bedroom-villa-sea-bed-beach-lagoon-room-luxury-wood-hotel-exotic-view-holiday-ocean-peace-suite-paradise-sanctuary-spa-tropical.jpg")" class="d-block w-100 rounded carousel-img-crop" alt="Hotel Dluna Exterior">
+                </div>
 
-@if (!string.IsNullOrEmpty(username))
-{
-  
-    <div class="card my-4 shadow-sm">
-        <div class="card-body">
-            <h3 class="card-title">Welcome to Hotel Luna</h3>
-            <p class="card-text">
-                Nestled in the heart of the city, Hotel Luna offers a perfect blend of comfort, elegance, and modern convenience. Our hotel features beautifully appointed rooms and suites designed to provide a relaxing retreat for both business and leisure travelers. Guests can enjoy a range of amenities including complimentary high-speed Wi-Fi, a state-of-the-art fitness center, and a gourmet restaurant serving local and international cuisine.
-            </p>
-            <p class="card-text">
-                At Hotel Luna, exceptional service is our hallmark. Our dedicated staff is available around the clock to ensure your stay is seamless and memorable. Whether you are visiting for a weekend getaway, a family vacation, or a business trip, Hotel Luna promises an unforgettable experience marked by luxury, hospitality, and attention to detail.
-            </p>
+                <div class="carousel-item">
+                    <img src="@Url.Content("~/Content/Images/_uhdbirdseyeview153.jpg")" class="d-block w-100 rounded carousel-img-crop" alt="Beach View">
+                </div>
+                <div class="carousel-item">
+                    <img src="@Url.Content("~/Content/Images/pexels-asman-chema-91897-594077.jpg")" class="d-block w-100 rounded carousel-img-crop" alt="Gourmet Restaurant">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#hotelCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#hotelCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
+</div>
 
-
-    @Html.ActionLink("click here to book a room", "Register")
-}
-else
-{
-    <h3>Welcome, Guest!</h3>
-}
+<div class="row mt-5">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <img src="@Url.Content("~/Content/Images/_uhdreflections105.jpg")" class="card-img-top carousel-img-crop" alt="Luxury Rooms">
+            <div class="card-body">
+                <h5 class="card-title">Luxury Rooms</h5>
+                <p class="card-text">Spacious, elegantly designed rooms with modern amenities and stunning views for your comfort and relaxation.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <img src="@Url.Content("~/Content/Images/_uhdfoodsndrinks147.jpg")" class="card-img-top carousel-img-crop" alt="Fine Dining">
+            <div class="card-body">
+                <h5 class="card-title">Fine Dining</h5>
+                <p class="card-text">Enjoy a variety of delicious dishes prepared by our expert chefs, featuring local and international cuisine.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <img src="@Url.Content("~/Content/Images/_uhdbirdseyeview134.jpg")" class="card-img-top carousel-img-crop" alt="Beach Access">
+            <div class="card-body">
+                <h5 class="card-title">Beach Access</h5>
+                <p class="card-text">Direct access to a beautiful beach, perfect for sunbathing, swimming, and enjoying breathtaking sunsets.</p>
+            </div>
+        </div>
+    </div>
+</div>
